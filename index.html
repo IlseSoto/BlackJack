@@ -6,21 +6,33 @@
 	<!--BOOTSTRAP-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="blackJscripts.js"></script>
 </head>
-<body style="background-color: #278b5e">
+<body onload="main();" style="background-color: #278b5e">
 	 <div class="row">
-  		<div class="col-sm-8 house">Home</div>
-  		<div class="col-sm-4 cards">
-  			<img src="../images_Poker/red_joker.png" width="35%" height="auto">
-  			<button type="button" class="btn btn-info">dame otra carta</button>
+  		<div class="col-sm-2 house" id="dealer_0"></div>
+  		<div class="col-sm-2 house" id="dealer_1"></div>
+  		<div class="col-sm-2 house" id="dealer_2"></div>
+  		<div class="col-sm-2 house" id="dealer_3"></div>
+  		<div class="col-sm-2 house" id="dealer_4"></div>
+  		<div class="col-sm-2 house" id="dealer_5"></div>
+  			
   		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-8 player">player</div>
+		<div class="col-sm-2 player" id="user_0"></div>
+		<div class="col-sm-2 player" id="user_1"></div>
+		<div class="col-sm-2 player" id="user_2"></div>
+		<div class="col-sm-2 player" id="user_3"></div>
+		<div class="col-sm-2 player" id="user_4"></div>
+		<div class="col-sm-2 player" id="user_5"></div>
+		<button type="button" class="btn btn-info" onclick="repartirCartas('1')">dame otra carta</button>
+	</div>
+	<div class="row">
 		<button type="button" class=" col-sm-2 btn btn-danger endGame">terminar</button>
 	</div>
 	<div class="row">
-		<button type="button" class="col-sm-2 btn btn-warning">Juego Nuevo</button>
+		<button type="button" class="col-sm-2 btn btn-warning" onclick="main();">Juego Nuevo</button>
 	</div>
 
 	

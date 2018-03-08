@@ -26,8 +26,13 @@ var cartasUser = [];
 var cartasDealer = [];
 var cartasRepartidas = 0;
 
-function main() {
+function main() {//cada que inicie juego reparte 2 cartas a cada 1
     shuffle(cartas);
+    clearDivs();
+    repartirCartas('1');
+    repartirCartas('1');
+    repartirCartas('2');
+    repartirCartas('2');
 }
 
 function shuffle(array) {
@@ -103,4 +108,11 @@ function calcularSuma(jugador){
         }
     }
     alert(suma);
+}
+
+function clearDivs(){//borra las cartas en los 2 lados
+    for (var i = 0; i <6; i++) {
+        document.getElementById('user_'+i).innerHTML="";
+        document.getElementById('user_'+i).innerHTML="";
+    }
 }

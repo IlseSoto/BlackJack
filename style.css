@@ -1,0 +1,12 @@
+.house{
+	/*height: 40%;*/
+	background-color: #990000;
+}
+
+.player{
+	background-color: #e6e6e6;
+}
+
+.endGame{
+	float: right;
+}

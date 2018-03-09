@@ -1,44 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>BlackJack</title>
-	<!--BOOTSTRAP-->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<script type="text/javascript" src="blackJscripts.js"></script>
-</head>
-<body onload="main();" style="background-color: #278b5e">
-	 <div class="row">
-  		<div class="col-sm-2 house" id="dealer_0"></div>
-  		<div class="col-sm-2 house" id="dealer_1"></div>
-  		<div class="col-sm-2 house" id="dealer_2"></div>
-  		<div class="col-sm-2 house" id="dealer_3"></div>
-  		<div class="col-sm-2 house" id="dealer_4"></div>
-  		<div class="col-sm-2 house" id="dealer_5"></div>
-  			
-  		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-2 player" id="user_0"></div>
-		<div class="col-sm-2 player" id="user_1"></div>
-		<div class="col-sm-2 player" id="user_2"></div>
-		<div class="col-sm-2 player" id="user_3"></div>
-		<div class="col-sm-2 player" id="user_4"></div>
-		<div class="col-sm-2 player" id="user_5"></div>
-		<button type="button" class="btn btn-info" onclick="repartirCartas('1')">dame otra carta</button>
-	</div>
-	<div class="row">
-		<button type="button" class=" col-sm-2 btn btn-danger endGame">terminar</button>
-	</div>
-	<div class="row">
-		<button type="button" class="col-sm-2 btn btn-warning" onclick="main();">Juego Nuevo</button>
-	</div>
+    <head>
+        <meta charset="UTF-8">
+        <title>BlackJack</title>
+        <script type="text/javascript" src="blackJscripts.js"></script>
+        <!--BOOTSTRAP-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <!--<link rel="stylesheet" type="text/css" href="style.css">-->
+    </head>
+    <body style="background-color: #278b5e" onload="main();">
+        <div class="row">
+            <div class="col-sm-8 house">Home</div>
+            <div class="col-sm-8 cards">
+                <div id="user_0" style="float: left;">
+                    <img src="../images_Poker/red_joker.png" width="150" height="200">
+                </div>
+                <div id="user_1" style="float: left;"></div>
+                <div id="user_2" style="float: left;"></div>
+                <div id="user_3" style="float: left;"></div>
+                <div id="user_4" style="float: left;"></div>
+                <div id="user_5" style="float: left;"></div>
+                <div id="user_6" style="float: left;"></div>
+                <div id="user_7" style="float: left;"></div>
+                <div id="user_8" style="float: left;"></div>
+                <div id="user_9" style="float: left;"></div>
+                <br/><br/><br/><br/><br/><br/> &nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" class=" col-sm-2 btn btn-danger endGame" onclick="IA_dealer()" id="btnFin">terminar</button>
+            </div><br/>
+            <div class="col-sm-8 cards">
+                <button type="button" class="btn btn-info" onclick="repartirCartas('1')" id="btnCarta">dame otra carta</button>
+            </div>
+        </div><br/>
+        
+        <div class="row">
+            <div class="col-sm-8 player">player</div>
+            <div class="col-sm-8 cards">
+                <div id="dealer_0" style="float: left;">
+                    <img src="../images_Poker/red_joker.png" width="150" height="200">
+                </div>
+                <div id="dealer_1" style="float: left;"></div>
+                <div id="dealer_2" style="float: left;"></div>
+                <div id="dealer_3" style="float: left;"></div>
+                <div id="dealer_4" style="float: left;"></div>
+                <div id="dealer_5" style="float: left;"></div>
+                <div id="dealer_6" style="float: left;"></div>
+                <div id="dealer_7" style="float: left;"></div>
+                <div id="dealer_8" style="float: left;"></div>
+                <div id="dealer_9" style="float: left;"></div>
+            </div>
+        </div><br/>
+        
+        <div class="row">
+            <button type="button" class="col-sm-2 btn btn-warning" onclick="reset()" id="btnNuevo">Juego Nuevo</button>
+        </div>
 
-	
-	<!--MAS BOOTSTRAP-->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
+        <!--MAS BOOTSTRAP-->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
 </html>

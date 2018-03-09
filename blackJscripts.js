@@ -136,6 +136,9 @@ function IA_dealer() {
         repartirCartas('2');
     }
     compararPuntajes();
+    $("#btnCarta").addClass('disabled');
+    $("#btnFin").addClass('disabled');
+    
 }
 
 function compararPuntajes() {
@@ -157,6 +160,7 @@ function compararPuntajes() {
     else if (puntajeUser === puntajeDealer) {
         alert("Juego empatado");
     }
+
 }
 
 function clearDivs(){ // borra las cartas en los 2 lados

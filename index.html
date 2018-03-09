@@ -5,8 +5,36 @@
 	<title>BlackJack</title>
 	<!--BOOTSTRAP-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="blackJscripts.js"></script>
 </head>
-<body>
+<body onload="main();" style="background-color: #278b5e">
+	 <div class="row">
+  		<div class="col-sm-2 house" id="dealer_0"></div>
+  		<div class="col-sm-2 house" id="dealer_1"></div>
+  		<div class="col-sm-2 house" id="dealer_2"></div>
+  		<div class="col-sm-2 house" id="dealer_3"></div>
+  		<div class="col-sm-2 house" id="dealer_4"></div>
+  		<div class="col-sm-2 house" id="dealer_5"></div>
+  			
+  		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-2 player" id="user_0"></div>
+		<div class="col-sm-2 player" id="user_1"></div>
+		<div class="col-sm-2 player" id="user_2"></div>
+		<div class="col-sm-2 player" id="user_3"></div>
+		<div class="col-sm-2 player" id="user_4"></div>
+		<div class="col-sm-2 player" id="user_5"></div>
+		<button type="button" class="btn btn-info" onclick="repartirCartas('1')">dame otra carta</button>
+	</div>
+	<div class="row">
+		<button type="button" class=" col-sm-2 btn btn-danger endGame">terminar</button>
+	</div>
+	<div class="row">
+		<button type="button" class="col-sm-2 btn btn-warning" onclick="main();">Juego Nuevo</button>
+	</div>
+
 	
 	<!--MAS BOOTSTRAP-->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

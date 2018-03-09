@@ -31,8 +31,11 @@ var puntajeUser = 0;
 var puntajeDealer = 0;
 var temp;
 
-function main() {
+function main() { // cada que inicie juego reparte 2 cartas a cada 1
     shuffle(cartas);
+    clearDivs();
+    repartirCartas('1');
+    repartirCartas('1');
     repartirCartas('2');
     repartirCartas('2');
     
@@ -156,30 +159,14 @@ function compararPuntajes() {
     }
 }
 
+function clearDivs(){ // borra las cartas en los 2 lados
+    for (var i = 0; i<6; i++) {
+        document.getElementById('user_'+i).innerHTML="";
+        document.getElementById('dealer_'+i).innerHTML="";
+    }
+}
+
 function reset() {
-    document.getElementById('user_0').innerHTML = '<img src="../images_Poker/red_joker.png" width="150" height="200">';
-    document.getElementById('user_1').innerHTML = '';
-    document.getElementById('user_2').innerHTML = '';
-    document.getElementById('user_3').innerHTML = '';
-    document.getElementById('user_4').innerHTML = '';
-    document.getElementById('user_5').innerHTML = '';
-    document.getElementById('user_6').innerHTML = '';
-    document.getElementById('user_7').innerHTML = '';
-    document.getElementById('user_8').innerHTML = '';
-    document.getElementById('user_9').innerHTML = '';
-    
-    document.getElementById('dealer_0').innerHTML = '<img src="../images_Poker/red_joker.png" width="150" height="200">';
-    document.getElementById('dealer_1').innerHTML = '';
-    document.getElementById('dealer_2').innerHTML = '';
-    document.getElementById('dealer_3').innerHTML = '';
-    document.getElementById('dealer_4').innerHTML = '';
-    document.getElementById('dealer_5').innerHTML = '';
-    document.getElementById('dealer_6').innerHTML = '';
-    document.getElementById('dealer_7').innerHTML = '';
-    document.getElementById('dealer_8').innerHTML = '';
-    document.getElementById('dealer_9').innerHTML = '';
-    
-    // resetear todas las variables
     cartasUser = [];
     cartasDealer = [];
     cartasRepartidas = 0;

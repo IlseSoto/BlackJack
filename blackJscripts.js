@@ -43,3 +43,26 @@ function shuffle(array) {
     }
     return array;
 }
+
+function repartirCartas(jugador) {
+    var cardName = cartas[cartasRepartidas]; // obtener el nombre de la tarjeta
+    
+    // obtener el valor de la tarjeta
+    var temp = cardName.split('_');
+    if (temp[0] == "jack"  ||  temp[0] == "queen"  ||  temp[0] == "king") {
+        temp[0] = 10; // ignoramos la tarjeta "ace"
+    }
+    if (jugador == '1') cartasUser.push(temp[0]);
+    else cartasDealer.push(temp[0]);
+    
+    calcularSuma(jugador); // es necesario esta función ya que las cartas 'ace' su valor no es estático
+    
+    if (jugador == '1') {
+        document.getElementById('user_' + cartasRepartidas).innerHTML = '<img src="../images_Poker/' + cardName + '.png" height="200" width="150"/>';
+    }
+    else {
+        document.getElementById('dealer_' + cartasRepartidas).innerHTML = '<img src="../images_Poker/' + cardName + '.png" height="200" width="150"/>';
+    }
+    
+    cartasRepartidas ++;
+}

@@ -66,3 +66,41 @@ function repartirCartas(jugador) {
     
     cartasRepartidas ++;
 }
+
+function calcularSuma(jugador) {
+    var cartasAce = 0; // indica el número de tarjetas ace
+    var suma = 0;
+    
+    if (jugador == '1') {
+        for (i=0; i<cartasUser.length; i++) {
+            if (cartasUser[i] == "ace") {
+                cartasAce ++;
+            }
+            else {
+                suma += parseInt(cartasUser[i]);
+            }
+        }
+    }
+    else {
+        for (i=0; i<cartasDealer.length; i++) {
+            if (cartasDealer[i] == "ace") {
+                cartasAce ++;
+            }
+            else {
+                suma += parseInt(cartasDealer[i]);
+            }
+        }
+    }
+
+    if (cartasAce != 0) {
+        if (cartasAce == 1) {
+            if (suma <= 10) suma += 11; // la carta ace toma como valor 11
+            else suma++; // la carta ace toma como valor 1
+        }
+        else {
+            if (suma + cartasAce <= 11) suma += 12;
+            else suma += 2;
+        }        
+    }
+    alert(suma);
+}

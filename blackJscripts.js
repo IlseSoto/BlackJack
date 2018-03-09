@@ -25,9 +25,20 @@ var cartas = ['ace_of_clubs', 'ace_of_diamonds', 'ace_of_hearts', 'ace_of_spades
 var cartasUser = [];
 var cartasDealer = [];
 var cartasRepartidas = 0;
+var cartasRepartidasUser = 0;
+var cartasRepartidasDealer = 0;
+var puntajeUser = 0;
+var puntajeDealer = 0;
+var temp;
 
 function main() {
     shuffle(cartas);
+    repartirCartas('2');
+    repartirCartas('2');
+    
+    // ocultar la 1ra carta del dealer
+    temp = document.getElementById('dealer_0').innerHTML;
+    document.getElementById('dealer_0').innerHTML = '<img src="../images_Poker/red_joker.png" width="150" height="200">';    
 }
 
 function shuffle(array) {
@@ -49,21 +60,22 @@ function repartirCartas(jugador) {
     
     // obtener el valor de la tarjeta
     var temp = cardName.split('_');
-    if (temp[0] == "jack"  ||  temp[0] == "queen"  ||  temp[0] == "king") {
+    if (temp[0] === "jack"  ||  temp[0] === "queen"  ||  temp[0] === "king") {
         temp[0] = 10; // ignoramos la tarjeta "ace"
     }
-    if (jugador == '1') cartasUser.push(temp[0]);
-    else cartasDealer.push(temp[0]);
+    if (jugador === '1') cartasUser.push(temp[0]);
+    else if (jugador === '2') cartasDealer.push(temp[0]);
     
     calcularSuma(jugador); // es necesario esta función ya que las cartas 'ace' su valor no es estático
     
-    if (jugador == '1') {
-        document.getElementById('user_' + cartasRepartidas).innerHTML = '<img src="../images_Poker/' + cardName + '.png" height="200" width="150"/>';
+    if (jugador === '1') {
+        document.getElementById('user_' + cartasRepartidasUser).innerHTML = '<img src="../images_Poker/' + cardName + '.png" height="200" width="150"/>';
+        cartasRepartidasUser ++;
     }
-    else {
-        document.getElementById('dealer_' + cartasRepartidas).innerHTML = '<img src="../images_Poker/' + cardName + '.png" height="200" width="150"/>';
+    else if (jugador === '2') {
+        document.getElementById('dealer_' + cartasRepartidasDealer).innerHTML = '<img src="../images_Poker/' + cardName + '.png" height="200" width="150"/>';
+        cartasRepartidasDealer ++;
     }
-    
     cartasRepartidas ++;
 }
 
@@ -71,9 +83,9 @@ function calcularSuma(jugador) {
     var cartasAce = 0; // indica el número de tarjetas ace
     var suma = 0;
     
-    if (jugador == '1') {
+    if (jugador === '1') {
         for (i=0; i<cartasUser.length; i++) {
-            if (cartasUser[i] == "ace") {
+            if (cartasUser[i] === "ace") {
                 cartasAce ++;
             }
             else {
@@ -81,9 +93,9 @@ function calcularSuma(jugador) {
             }
         }
     }
-    else {
+    else if (jugador === '2') {
         for (i=0; i<cartasDealer.length; i++) {
-            if (cartasDealer[i] == "ace") {
+            if (cartasDealer[i] === "ace") {
                 cartasAce ++;
             }
             else {
@@ -92,8 +104,8 @@ function calcularSuma(jugador) {
         }
     }
 
-    if (cartasAce != 0) {
-        if (cartasAce == 1) {
+    if (cartasAce !== 0) {
+        if (cartasAce === 1) {
             if (suma <= 10) suma += 11; // la carta ace toma como valor 11
             else suma++; // la carta ace toma como valor 1
         }
@@ -102,5 +114,80 @@ function calcularSuma(jugador) {
             else suma += 2;
         }        
     }
-    alert(suma);
+    
+    if (jugador === '1') {
+        document.getElementById('user_9').innerHTML = '<p>' + suma + '</p>';
+        puntajeUser = suma;
+    }
+    else if (jugador === '2') {
+        document.getElementById('dealer_9').innerHTML = '<p>' + suma + '</p>';
+        puntajeDealer = suma;
+    }
+    //alert(suma);
+}
+
+function IA_dealer() {
+    document.getElementById('dealer_0').innerHTML = temp; // quitar la carta oculta
+    
+    while (puntajeDealer < puntajeUser) {
+        repartirCartas('2');
+    }
+    compararPuntajes();
+}
+
+function compararPuntajes() {
+    if (puntajeDealer == 21) {
+        alert("Has perdido");
+    }
+    else if (puntajeUser > 21) {
+        alert("Has perdido");
+    }
+    else if (puntajeDealer > 21) {
+        alert("Has ganado");
+    }
+    else if (puntajeUser < 21  &&  puntajeDealer > puntajeUser  &&  puntajeDealer <= 21) {
+        alert("Has perdido");
+    }
+    else if (puntajeDealer < 21  &&  puntajeUser > puntajeDealer  &&  puntajeUser <= 21) {
+        alert("Has ganado");
+    }
+    else if (puntajeUser === puntajeDealer) {
+        alert("Juego empatado");
+    }
+}
+
+function reset() {
+    document.getElementById('user_0').innerHTML = '<img src="../images_Poker/red_joker.png" width="150" height="200">';
+    document.getElementById('user_1').innerHTML = '';
+    document.getElementById('user_2').innerHTML = '';
+    document.getElementById('user_3').innerHTML = '';
+    document.getElementById('user_4').innerHTML = '';
+    document.getElementById('user_5').innerHTML = '';
+    document.getElementById('user_6').innerHTML = '';
+    document.getElementById('user_7').innerHTML = '';
+    document.getElementById('user_8').innerHTML = '';
+    document.getElementById('user_9').innerHTML = '';
+    
+    document.getElementById('dealer_0').innerHTML = '<img src="../images_Poker/red_joker.png" width="150" height="200">';
+    document.getElementById('dealer_1').innerHTML = '';
+    document.getElementById('dealer_2').innerHTML = '';
+    document.getElementById('dealer_3').innerHTML = '';
+    document.getElementById('dealer_4').innerHTML = '';
+    document.getElementById('dealer_5').innerHTML = '';
+    document.getElementById('dealer_6').innerHTML = '';
+    document.getElementById('dealer_7').innerHTML = '';
+    document.getElementById('dealer_8').innerHTML = '';
+    document.getElementById('dealer_9').innerHTML = '';
+    
+    // resetear todas las variables
+    cartasUser = [];
+    cartasDealer = [];
+    cartasRepartidas = 0;
+    cartasRepartidasUser = 0;
+    cartasRepartidasDealer = 0;
+    puntajeUser = 0;
+    puntajeDealer = 0;
+    temp;
+    
+    main();
 }
